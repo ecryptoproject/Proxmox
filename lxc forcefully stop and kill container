@@ -1,0 +1,60 @@
+Reboot the container
+
+The syntax is:
+lxc-stop -n containerNameHere -r
+
+To reboot the container called myhttpd, enter:
+lxc-stop -n myhttpd -r
+
+Shut down and kill the container (hard kill)
+
+The syntax is:
+lxc-stop -n containerNameHere -k
+
+OR
+lxc-stop -n containerNameHere --kill
+
+To forcefully kill and shut down the container called myhttpd, enter:
+lxc-stop -n myhttpd -k
+
+To wait TIMEOUT (say 180) seconds before hard-stopping the container, enter:
+lxc-stop -n myhttpd -k -t 180
+
+OR
+lxc-stop -n myhttpd -k --timeout 180
+
+Clean shutdown (recommended)
+
+The following syntax only request a clean shutdown, do not kill the container tasks if the clean shutdown fail:
+lxc-stop -n containerNameHere --nokill
+lxc-stop -n myhttpd --nokill
+
+A note about timeouts
+
+To avoid waiting up to 60 seconds and simply perform the requestion action (reboot, shutdown, or hard kill) and exit, pass the -W option:
+## hard kill ##
+lxc-stop -W -n containerNameHere -k
+## reboot ##
+lxc-stop -W -n containerNameHere -r
+
+How do I view the container state?
+
+To list only running containers, enter:
+lxc-ls --fancy --running
+
+Sample outputs:
+To list only stopped containers, enter:
+lxc-ls --fancy --stopped
+
+To list both stopped and running containers on the system, enter:
+lxc-ls --fancy
+
+Sample outputs:
+
+NAME         STATE    IPV4       IPV6  AUTOSTART  
+------------------------------------------------
+debian8      STOPPED  -          -     NO         
+wwwapp1      RUNNING  10.0.3.14  -     YES        
+dnsapp1      RUNNING  10.0.3.16  -     YES        
+staticf1     RUNNING  10.0.3.17  -     YES        
+mysqlapp     RUNNING  10.0.3.19  -     YES        
